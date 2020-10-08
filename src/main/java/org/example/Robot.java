@@ -19,8 +19,9 @@ public class Robot {
     public Robot rotateLeft(int numberOfTimes) {
         numberOfTimes = numberOfTimes % 4;
         final int index = orderedOrientations.indexOf(orientation);
-        final int newIndex = index - numberOfTimes;
-        return new Robot(orderedOrientations.get(Math.abs(newIndex)), coordinate);
+        final int newIndex = index - numberOfTimes > -1 ?
+                index - numberOfTimes : (index - numberOfTimes) + orderedOrientations.size();
+        return new Robot(orderedOrientations.get(newIndex), coordinate);
     }
 
     public Robot rotateRight(int numberOfTimes) {
