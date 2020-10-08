@@ -121,4 +121,36 @@ public class RobotTest {
         assertEquals(7, movedRobot.getCoordinate().getX());
         assertEquals(1, movedRobot.getCoordinate().getY());
     }
+
+    @Test
+    public void move_NToSamePosition() {
+        final Robot robot = new Robot(Orientation.N, new Coordinate(12, 1));
+        final Robot movedRobot = robot.move(100);
+        assertEquals(12, movedRobot.getCoordinate().getX());
+        assertEquals(1, movedRobot.getCoordinate().getY());
+    }
+
+    @Test
+    public void move_EToSamePosition() {
+        final Robot robot = new Robot(Orientation.E, new Coordinate(12, 1));
+        final Robot movedRobot = robot.move(100);
+        assertEquals(12, movedRobot.getCoordinate().getX());
+        assertEquals(1, movedRobot.getCoordinate().getY());
+    }
+
+    @Test
+    public void move_SToSamePosition() {
+        final Robot robot = new Robot(Orientation.S, new Coordinate(12, 99));
+        final Robot movedRobot = robot.move(100);
+        assertEquals(12, movedRobot.getCoordinate().getX());
+        assertEquals(99, movedRobot.getCoordinate().getY());
+    }
+
+    @Test
+    public void move_WToSamePosition() {
+        final Robot robot = new Robot(Orientation.W, new Coordinate(12, 1));
+        final Robot movedRobot = robot.move(100);
+        assertEquals(12, movedRobot.getCoordinate().getX());
+        assertEquals(1, movedRobot.getCoordinate().getY());
+    }
 }

@@ -17,7 +17,7 @@ public class Robot {
     }
 
     public Robot rotateLeft(int numberOfTimes) {
-        numberOfTimes = numberOfTimes % 4;
+        numberOfTimes = numberOfTimes % orderedOrientations.size();
         final int index = orderedOrientations.indexOf(orientation);
         final int newIndex = index - numberOfTimes > -1 ?
                 index - numberOfTimes : (index - numberOfTimes) + orderedOrientations.size();
@@ -25,7 +25,7 @@ public class Robot {
     }
 
     public Robot rotateRight(int numberOfTimes) {
-        numberOfTimes = numberOfTimes % 4;
+        numberOfTimes = numberOfTimes % orderedOrientations.size();
         final int index = orderedOrientations.indexOf(orientation);
         final int newIndex = index + numberOfTimes < orderedOrientations.size() ?
                 index + numberOfTimes : (index + numberOfTimes) - orderedOrientations.size();
@@ -34,19 +34,21 @@ public class Robot {
 
     public Robot move(final int numberOfSpaces) {
         // TODO wrapping
+        final int numberOfSpacesVertical = numberOfSpaces % (Coordinate.maxY + 1);
+        final int numberOfSpacesHorizontal = numberOfSpaces % (Coordinate.maxY + 1);
         switch (orientation) {
             case N:
                 return new Robot(
                         orientation,
                         new Coordinate(
                                 coordinate.getX(),
-                                coordinate.getY() + numberOfSpaces
+                                coordinate.getY() + numberOfSpacesVertical
                         ));
             case E:
                 return new Robot(
                         orientation,
                         new Coordinate(
-                                coordinate.getX() + numberOfSpaces,
+                                coordinate.getX() + numberOfSpacesHorizontal,
                                 coordinate.getY()
                         ));
             case S:
@@ -54,13 +56,13 @@ public class Robot {
                         orientation,
                         new Coordinate(
                                 coordinate.getX(),
-                                coordinate.getY() - numberOfSpaces
+                                coordinate.getY() - numberOfSpacesVertical
                         ));
             case W:
                 return new Robot(
                         orientation,
                         new Coordinate(
-                                coordinate.getX() - numberOfSpaces,
+                                coordinate.getX() - numberOfSpacesHorizontal,
                                 coordinate.getY()
                         ));
             default:
