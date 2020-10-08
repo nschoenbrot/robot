@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -108,5 +109,17 @@ public class ControllerTest {
         controller.command(robot, "R8L9");
         verify(robot).rotateLeft(9);
         verify(robot).rotateRight(8);
+    }
+
+    @Test
+    public void command_rightLeftWithMove() {
+        when(robot.rotateRight(anyInt())).thenReturn(robot);
+        when(robot.rotateLeft(anyInt())).thenReturn(robot);
+        when(robot.move(anyInt())).thenReturn(robot);
+        controller.command(robot, "MR8L9M55");
+        verify(robot).rotateLeft(9);
+        verify(robot).rotateRight(8);
+        verify(robot).move(1);
+        verify(robot).move(55);
     }
 }

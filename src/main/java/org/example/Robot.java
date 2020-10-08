@@ -31,8 +31,9 @@ public class Robot {
         return new Robot(orderedOrientations.get(newIndex), coordinate);
     }
 
-    public void move(final int numberOfSpaces) {
+    public Robot move(final int numberOfSpaces) {
         // TODO
+        return new Robot(orientation, coordinate);
     }
 
     public Orientation getOrientation() {

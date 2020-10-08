@@ -57,7 +57,6 @@ public class Controller {
     }
 
     public Robot command(final Robot robot, final String input) {
-        // TODO
         Robot currentRobot = robot;
         int index = 0;
         final char[] inputChars = input.toCharArray();
@@ -77,8 +76,9 @@ public class Controller {
                 return robot.rotateRight(numberOfTimes);
             case 'L':
                 return robot.rotateLeft(numberOfTimes);
+            case 'M':
+                return robot.move(numberOfTimes);
             default:
-                System.out.println("Unrecognized command: " + character);
                 return robot;
         }
     }
