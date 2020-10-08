@@ -1,4 +1,4 @@
-package org.example;
+package org.example.robot;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -13,7 +13,7 @@ public class Controller {
         final List<String> inputList = new BufferedReader(new InputStreamReader(inputStream))
                 .lines().collect(Collectors.toList());
 
-        System.out.println(inputList);
+        System.out.println("Input from file\n" + inputList);
 
         final Controller controller = new Controller();
         final Orientation orientation = controller.readCompassDirection(
@@ -29,7 +29,7 @@ public class Controller {
         final Robot commandedRobot = controller.command(initialRobot, inputList.get(1));
         System.out.println("Commanded robot: " + commandedRobot);
 
-        System.out.println(commandedRobot.getOrientation() + " " +
+        System.out.println("\nOutput\n" + commandedRobot.getOrientation() + " " +
                 commandedRobot.getCoordinate().getX() + " " +
                 commandedRobot.getCoordinate().getY());
     }

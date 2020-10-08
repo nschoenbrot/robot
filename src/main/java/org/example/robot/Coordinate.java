@@ -1,4 +1,4 @@
-package org.example;
+package org.example.robot;
 
 public class Coordinate {
     public static final int maxX = 99;
