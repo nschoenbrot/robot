@@ -3,6 +3,7 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,25 +58,41 @@ public class Controller {
 
     public Robot command(final Robot robot, final String input) {
         // TODO
-        Robot current = robot;
+        Robot currentRobot = robot;
         int index = 0;
         final char[] inputChars = input.toCharArray();
         while (index < input.length()) {
             final char character = inputChars[index];
-            final char secondCharacter = index + 1 < inputChars.length ?
-                    inputChars[index + 1] : ' ';
-            final int numberOfTimes = Character.isDigit(secondCharacter) ?
-                    Integer.parseInt(String.valueOf(secondCharacter)) : 1;
-            switch (character) {
-                case 'R':
-                    current = current.rotateRight(numberOfTimes);
-                    break;
-                case 'L':
-                    current = current.rotateLeft(numberOfTimes);
-                    break;
-            }
+            final int numberOfTimes = findNumberOfTimes(
+                    Arrays.copyOfRange(inputChars, index + 1, inputChars.length));
+            currentRobot = singleCommand(currentRobot, character, numberOfTimes);
             index++;
         }
-        return current;
+        return currentRobot;
+    }
+
+    private Robot singleCommand(final Robot robot, final char character, final int numberOfTimes) {
+        switch (character) {
+            case 'R':
+                return robot.rotateRight(numberOfTimes);
+            case 'L':
+                return robot.rotateLeft(numberOfTimes);
+            default:
+                System.out.println("Unrecognized command: " + character);
+                return robot;
+        }
+    }
+
+    private int findNumberOfTimes(final char[] input) {
+        final StringBuilder digits = new StringBuilder();
+        for (char character : input) {
+            if (Character.isDigit(character)) {
+                digits.append(character);
+            } else {
+                break;
+            }
+        }
+        return digits.length() == 0 ?
+                1 : Integer.parseInt(digits.toString());
     }
 }
