@@ -57,6 +57,25 @@ public class Controller {
 
     public Robot command(final Robot robot, final String input) {
         // TODO
-        return robot;
+        Robot current = robot;
+        int index = 0;
+        final char[] inputChars = input.toCharArray();
+        while (index < input.length()) {
+            final char character = inputChars[index];
+            final char secondCharacter = index + 1 < inputChars.length ?
+                    inputChars[index + 1] : ' ';
+            final int numberOfTimes = Character.isDigit(secondCharacter) ?
+                    Integer.parseInt(String.valueOf(secondCharacter)) : 1;
+            switch (character) {
+                case 'R':
+                    current = current.rotateRight(numberOfTimes);
+                    break;
+                case 'L':
+                    current = current.rotateLeft(numberOfTimes);
+                    break;
+            }
+            index++;
+        }
+        return current;
     }
 }

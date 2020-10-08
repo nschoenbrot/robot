@@ -2,11 +2,20 @@ package org.example;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ControllerTest {
     private Controller controller;
+
+    @Mock
+    private Robot robot;
 
     @Before
     public void setUp() {
@@ -86,7 +95,18 @@ public class ControllerTest {
     }
 
     @Test
-    public void command() {
-        // TODO
+    public void command_rightLeft() {
+        when(robot.rotateRight(1)).thenReturn(robot);
+        controller.command(robot, "RL");
+        verify(robot).rotateLeft(1);
+        verify(robot).rotateRight(1);
+    }
+
+    @Test
+    public void command_rightLeftWithNumber() {
+        when(robot.rotateRight(8)).thenReturn(robot);
+        controller.command(robot, "R8L9");
+        verify(robot).rotateLeft(9);
+        verify(robot).rotateRight(8);
     }
 }
