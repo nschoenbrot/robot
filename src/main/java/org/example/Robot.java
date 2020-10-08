@@ -33,7 +33,6 @@ public class Robot {
     }
 
     public Robot move(final int numberOfSpaces) {
-        // TODO wrapping
         final int numberOfSpacesVertical = numberOfSpaces % (Coordinate.maxY + 1);
         final int numberOfSpacesHorizontal = numberOfSpaces % (Coordinate.maxY + 1);
         switch (orientation) {
