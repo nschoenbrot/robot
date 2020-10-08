@@ -42,13 +42,17 @@ public class Robot {
                         orientation,
                         new Coordinate(
                                 coordinate.getX(),
-                                coordinate.getY() + numberOfSpacesVertical
+                                coordinate.getY() + numberOfSpacesVertical > Coordinate.maxY ?
+                                        coordinate.getY() + numberOfSpacesVertical - Coordinate.maxY - 1 :
+                                        coordinate.getY() + numberOfSpacesVertical
                         ));
             case E:
                 return new Robot(
                         orientation,
                         new Coordinate(
-                                coordinate.getX() + numberOfSpacesHorizontal,
+                                coordinate.getX() + numberOfSpacesHorizontal > Coordinate.maxX ?
+                                        coordinate.getX() + numberOfSpacesHorizontal - Coordinate.maxX - 1 :
+                                        coordinate.getX() + numberOfSpacesHorizontal,
                                 coordinate.getY()
                         ));
             case S:
@@ -56,13 +60,17 @@ public class Robot {
                         orientation,
                         new Coordinate(
                                 coordinate.getX(),
-                                coordinate.getY() - numberOfSpacesVertical
+                                coordinate.getY() - numberOfSpacesVertical < Coordinate.minX ?
+                                        coordinate.getY() - numberOfSpacesVertical + Coordinate.maxY + 1 :
+                                        coordinate.getY() - numberOfSpacesVertical
                         ));
             case W:
                 return new Robot(
                         orientation,
                         new Coordinate(
-                                coordinate.getX() - numberOfSpacesHorizontal,
+                                coordinate.getX() - numberOfSpacesHorizontal < Coordinate.minX ?
+                                        coordinate.getX() - numberOfSpacesHorizontal + Coordinate.maxX + 1 :
+                                        coordinate.getX() - numberOfSpacesHorizontal,
                                 coordinate.getY()
                         ));
             default:

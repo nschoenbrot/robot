@@ -153,4 +153,36 @@ public class RobotTest {
         assertEquals(12, movedRobot.getCoordinate().getX());
         assertEquals(1, movedRobot.getCoordinate().getY());
     }
+
+    @Test
+    public void move_NOverEdge() {
+        final Robot robot = new Robot(Orientation.N, new Coordinate(12, 98));
+        final Robot movedRobot = robot.move(3);
+        assertEquals(12, movedRobot.getCoordinate().getX());
+        assertEquals(1, movedRobot.getCoordinate().getY());
+    }
+
+    @Test
+    public void move_EOverEdge() {
+        final Robot robot = new Robot(Orientation.E, new Coordinate(50, 1));
+        final Robot movedRobot = robot.move(50);
+        assertEquals(0, movedRobot.getCoordinate().getX());
+        assertEquals(1, movedRobot.getCoordinate().getY());
+    }
+
+    @Test
+    public void move_SOverEdge() {
+        final Robot robot = new Robot(Orientation.S, new Coordinate(12, 1));
+        final Robot movedRobot = robot.move(10);
+        assertEquals(12, movedRobot.getCoordinate().getX());
+        assertEquals(91, movedRobot.getCoordinate().getY());
+    }
+
+    @Test
+    public void move_WOverEdge() {
+        final Robot robot = new Robot(Orientation.W, new Coordinate(12, 0));
+        final Robot movedRobot = robot.move(13);
+        assertEquals(99, movedRobot.getCoordinate().getX());
+        assertEquals(0, movedRobot.getCoordinate().getY());
+    }
 }
