@@ -91,7 +91,34 @@ public class RobotTest {
     }
 
     @Test
-    public void move() {
-        // TODO
+    public void move_N() {
+        final Robot robot = new Robot(Orientation.N, new Coordinate(12, 1));
+        final Robot movedRobot = robot.move(90);
+        assertEquals(12, movedRobot.getCoordinate().getX());
+        assertEquals(91, movedRobot.getCoordinate().getY());
+    }
+
+    @Test
+    public void move_E() {
+        final Robot robot = new Robot(Orientation.E, new Coordinate(12, 1));
+        final Robot movedRobot = robot.move(5);
+        assertEquals(17, movedRobot.getCoordinate().getX());
+        assertEquals(1, movedRobot.getCoordinate().getY());
+    }
+
+    @Test
+    public void move_S() {
+        final Robot robot = new Robot(Orientation.S, new Coordinate(12, 99));
+        final Robot movedRobot = robot.move(90);
+        assertEquals(12, movedRobot.getCoordinate().getX());
+        assertEquals(9, movedRobot.getCoordinate().getY());
+    }
+
+    @Test
+    public void move_W() {
+        final Robot robot = new Robot(Orientation.W, new Coordinate(12, 1));
+        final Robot movedRobot = robot.move(5);
+        assertEquals(7, movedRobot.getCoordinate().getX());
+        assertEquals(1, movedRobot.getCoordinate().getY());
     }
 }

@@ -33,8 +33,39 @@ public class Robot {
     }
 
     public Robot move(final int numberOfSpaces) {
-        // TODO
-        return new Robot(orientation, coordinate);
+        // TODO wrapping
+        switch (orientation) {
+            case N:
+                return new Robot(
+                        orientation,
+                        new Coordinate(
+                                coordinate.getX(),
+                                coordinate.getY() + numberOfSpaces
+                        ));
+            case E:
+                return new Robot(
+                        orientation,
+                        new Coordinate(
+                                coordinate.getX() + numberOfSpaces,
+                                coordinate.getY()
+                        ));
+            case S:
+                return new Robot(
+                        orientation,
+                        new Coordinate(
+                                coordinate.getX(),
+                                coordinate.getY() - numberOfSpaces
+                        ));
+            case W:
+                return new Robot(
+                        orientation,
+                        new Coordinate(
+                                coordinate.getX() - numberOfSpaces,
+                                coordinate.getY()
+                        ));
+            default:
+                return new Robot(orientation, coordinate);
+        }
     }
 
     public Orientation getOrientation() {
